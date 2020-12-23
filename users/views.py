@@ -13,15 +13,15 @@ def chkUname(request):
     name = request.GET['uname']
     users = models.User.objects.filter(uname=name).all()
     if users:
-        return HttpResponse("user exist.")
+        return HttpResponse("1")
     else:
-        return HttpResponse("it is ok.")
+        return HttpResponse("0")
 
 
 def reguser(request):
-    uname = request.GET['uname']
-    upwd = request.GET['upwd']
-    nickname = request.GET['nickname']
+    uname = request.POST['uname']
+    upwd = request.POST['upwd']
+    nickname = request.POST['nickname']
     try:
         models.User.objects.create(uname=uname, upwd=upwd, nickname=nickname)
         return HttpResponse("success")

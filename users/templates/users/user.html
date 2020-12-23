@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function (){
+            $("#uname").blur(function (){
+            var xhr = createXhr();
+            xhr.open('get', '/user/chkname/?uname='+this.value, true);
+            xhr.onreadystatechange = function (){
+                if (xhr.readyState==4 && xhr.status==200){
+                    $("#uname-show").html(xhr.responseText);
+                }
+            }
+            xhr.send(null)
+            });
+            $("#btnRegister").click(function (){
+                var xhr = createXhr();
+                var uname = $("#uname").val();
+                var upwd = $("#upwd").val();
+                var nickname = $("#nickname").val();
+                var url = "/user/reguser?uname="+uname+"&upwd="+upwd+"&nickname="+nickname;
+                xhr.open('get', url, true);
+                xhr.onreadystatechange = function (){
+                    if (xhr.readyState==4 && xhr.status==200){
+                        alert(xhr.responseText);
+                    }
+                }
+                xhr.send(null);
+            });
+        })
+
+    </script>
+</head>
+<body>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>uname</td>
+                    <td><input type="text" id="uname"></td>
+                    <td><span id="uname-show"></span></td>
+                </tr>
+                <tr>
+                    <td>upwd</td>
+                    <td><input type="password" id="upwd" name="upwd"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>nickname</td>
+                    <td><input type="text" id="nickname" name="nickname"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><button id="btnRegister" >register</button></td>
+
+                </tr>
+            </tbody>
+        </table>
+
+</body>
+</html>

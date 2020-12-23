@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/common.js"></script>
+    <script>
+        function btnAjax(){
+            //1.create  xhr
+            var xhr = createXhr();
+            //2.create  request
+            xhr.open("get","/02-server",true);
+            //3.set fun callbak
+            xhr.onreadystatechange = function (){
+                if (xhr.readyState==4 && xhr.status==200){
+                    //receive data
+                    document.getElementById('show').innerHTML = xhr.responseText;
+                }
+            }
+            //4.send request
+            xhr.send(null);
+        }
+        function btnUname(){
+            var xhr = createXhr();
+            var uname = document.getElementById("uname").value;
+            var url = "/02-server-param?uname="+uname;
+            xhr.open("get", url, true)
+            xhr.onreadystatechange = function (){
+                if (xhr.readyState==4 && xhr.status==200){
+                    document.getElementById('show-name').innerHTML = xhr.responseText;
+                }
+            }
+            xhr.send(null);
+        }
+    </script>
+</head>
+<body>
+    <a href="/02-server">normal request</a>
+    <button onclick="btnAjax()">AJAX request</button>
+    <div id="show"></div>
+    <input type="text" id="uname">
+    <button onclick="btnUname()">show name</button>
+    <div id="show-name"></div>
+</body>
+</html>

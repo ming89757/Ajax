@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function (){
+            $("#btnSub").click(function (){
+               //create xhr
+                var xhr = createXhr()
+               //create request (post)
+                xhr.open('post',"/03-server/",true)
+               //set callback function
+                xhr.onreadystatechange = function (){
+                    if (xhr.readyState==4 && xhr.status==200){
+                        alert(xhr.responseText)
+                    }
+                }
+               //change request head
+                xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+               //send request
+                var uname = $("#uname").val();
+                var upwd = $("#upwd").val();
+                var csrf = $("[name='csrfmiddlewaretoken']").val();
+                var params = "uname="+uname+"&upwd="+upwd+"&csrfmiddlewaretoken="+csrf;
+                xhr.send(params);
+            });
+        });
+    </script>
+</head>
+<body>
+    {% csrf_token %}
+    <p>username: <input type="text" id="uname"></p>
+    <p>upwd: <input type="password" id="upwd"></p>
+    <p><input type="button" id="btnSub" value="commit"></p>
+</body>
+</html>

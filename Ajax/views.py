@@ -10,7 +10,7 @@ def ajax_get(request):
 
 
 def server02(request):
-    return HttpResponse('this is use ajax.')
+    return HttpResponse('this is use ajax1.')
 
 
 def server02_param(request):

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
+    'ajax1.apps.AjaxConfig',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'Ajax.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ajax',
+        'NAME': 'ajax1',
         'USER': 'gly',
         'PASSWORD': 'guolongyu',
         'HOST': '127.0.0.1',

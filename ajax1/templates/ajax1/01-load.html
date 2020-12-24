@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function (){
+            $("#btnLoad").click(function (){
+                var params = "uname=lvze&uage=30"
+                var params = {
+                    uname:"maria",
+                    uage:18,
+                    csrfmiddlewaretoken:$("[name='csrfmiddlewaretoken']").val()
+                }
+                $("#baidu").load("/ajax1/01-server/", params, function (){
+                    window.setTimeout(function (){
+                        $("#baidu").hide(3000)
+                    },5000)
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+    {% csrf_token %}
+    <button id="btnLoad">load baidu</button>
+    <div id="baidu"></div>
+</body>
+</html>

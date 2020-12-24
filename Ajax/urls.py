@@ -20,10 +20,11 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('users.urls')),
+    url(r'^ajax1/', include('ajax1.urls')),
     url(r'^01-xhr', views.xhr01),
-    url(r'^02-ajax-get/$', views.ajax_get),
+    url(r'^02-ajax1-get/$', views.ajax_get),
     url(r'^02-server$', views.server02),
     url(r'^02-server-param$', views.server02_param),
-    url(r'^03-ajax-post/$', views.ajax_post),
+    url(r'^03-ajax1-post/$', views.ajax_post),
     url(r'^03-server/$', views.server03),
 ]

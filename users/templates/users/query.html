@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script>
+        $(function (){
+            $("#show").click(function (){
+                var xhr = createXhr();
+                xhr.open("get", "/user/query_server/", true)
+                xhr.onreadystatechange = function (){
+                    if (xhr.readyState==4 && xhr.status==200){
+                        var msg = xhr.responseText;
+                        var users = msg.split("|");
+                        var html = '';
+                        for (var i = 0;i<users.length;i++){
+                            html+="<tr>";
+                            var info = users[i].split("_");
+                            html += "<td>"+info[0]+"</td>"
+                            html += "<td>"+info[1]+"</td>"
+                            html += "<td>"+info[2]+"</td>"
+                            html += "<td>"+info[3]+"</td>"
+                            html+="</tr>";
+                        }
+                        $("#content").html(html);
+                    }
+                }
+                xhr.send(null)
+            })
+            $("#showJSON").click(function (){
+                var xhr = createXhr()
+                xhr.open("get", '/user/user_server', true)
+                xhr.onreadystatechange = function (){
+                    if (xhr.readyState==4&&xhr.status==200){
+                        var res = xhr.responseText;
+                        var arr = JSON.parse(res)
+                        var html = ""
+                        $(arr).each(function (i,obj){
+                            html += "<tr>"
+                            html += "<td>"+obj.pk+"</td>"
+                            html += "<td>"+obj.fields.uname+"</td>"
+                            html += "<td>"+obj.fields.upwd+"</td>"
+                            html += "<td>"+obj.fields.nickname+"</td>"
+                            html += "</tr>"
+                        })
+                        $("#content").html(html)
+                    }
+                }
+                xhr.send(null)
+            })
+        })
+    </script>
+</head>
+<body>
+    <button id="show">show</button>
+    <button id="showJSON">show by json</button>
+<table width="400" border="1">
+    <tr>
+        <th>ID</th>
+        <th>username</th>
+        <th>upwd</th>
+        <th>nickname</th>
+    </tr>
+    <tbody id="content"></tbody>
+</table>
+</body>
+</html>

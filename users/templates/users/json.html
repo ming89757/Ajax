@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <script>
+        //json
+        var jsonStr = '{"uname":"wang","uage":30}';
+        var obj = JSON.parse(jsonStr)
+        console.log(obj.uname);
+        console.log(obj.uage);
+        var arrs = '[{"uname":"gly","uage":30},{"uname":"gly1","uage":20}]'
+        var arr = JSON.parse(arrs)
+        $(arr).each(function (i,aaa){
+            console.log(aaa.uname)
+            console.log(aaa.uage)
+        })
+    </script>
+</body>
+</html>

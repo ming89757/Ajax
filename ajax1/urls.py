@@ -11,4 +11,8 @@ urlpatterns = [
     url(r'^03-server/$', views.server03),
     url(r'^04-ajax/$', views.ajax_views),
     url(r'^04-server/$', views.server04),
+    url(r'^05-cross/$', views.cross_views),
+    url(r'^05-server/$', views.server05),
+    url(r'^06-js/$', views.js_views),
+    url(r'^06-server/$', views.server06),
 ]

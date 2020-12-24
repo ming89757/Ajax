@@ -55,3 +55,22 @@ def server04(request):
         }
     ]
     return HttpResponse(json.dumps(list1))
+
+
+def cross_views(request):
+    return render(request, 'ajax1/05-cross.html')
+
+
+def server05(request):
+    return HttpResponse("test route")
+
+
+def js_views(request):
+    return render(request, 'ajax1/06-js.html')
+
+
+def server06(request):
+    cb = request.GET['callback']
+    return HttpResponse(cb + "('this is server06 response')")
+
+
